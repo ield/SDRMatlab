@@ -1,7 +1,7 @@
-
-path = 'SDR_Medidas/MATLAB/';
-signalFile1 = dir([path, 'ch1_100.txt']);
-signalFile2 = dir([path, 'ch2_100_1.txt']);
+clear;
+path = 'SDR_Medidas/visualStudio/';
+signalFile1 = dir([path, 'ch1_1.txt']);
+signalFile2 = dir([path, 'ch2_1.txt']);
 file1 = [path, signalFile1.name];
 file2 = [path, signalFile2.name];
 signal1 = textToSignal(file1);
@@ -18,7 +18,7 @@ X_f2 = 10*log10(abs(fft(signal2)));
 X_f2 = circshift(X_f2, L/2);
 
 %% Plot in time domain
-savePath = '../Informes/Informe1/Images/';
+% savePath = '../Informes/Informe1/Images/';
 figure('Color',[1 1 1]);
 
 x0=500;
@@ -51,7 +51,7 @@ xlabel('Time (\mus)');
 ylabel('x_1(t)');
 xlim([2 2.1]);
 
-saveas(gca, [savePath, 'cosTime'],'epsc');
+% saveas(gca, [savePath, 'cosTime'],'epsc');
 
 %% Plot in f domain
 
@@ -87,4 +87,4 @@ xlabel('Frequency (MHz)');
 ylabel('X_1(f)');
 xlim([99 101]);
 
-saveas(gca, [savePath, 'cosFreq'],'epsc');
+% saveas(gca, [savePath, 'cosFreq'],'epsc');
