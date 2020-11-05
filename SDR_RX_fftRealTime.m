@@ -5,16 +5,18 @@
 % computes the received signal's fft in real time
 
 clear;
-
+tic;
 dev = limeSDR();                % Generates connection with LimeSDR
 
 % Initialize some parameters
-f0 = 98.0e6;
+f0 = 78.0e6;
 dev.rx0.frequency  = f0;
 fs = 5e6;
 dev.rx0.samplerate = fs;
-dev.rx0.bandwidth = 300e3;
+dev.rx0.bandwidth = 2e6;
 dev.rx0.antenna = 1;
+
+recTime = 5;    % Receiving time (s)
 
 % Enable stream parameters
 dev.rx0.enable;
@@ -22,16 +24,21 @@ dev.rx0.enable;
 % Start the module
 dev.start();
 
-%%  
+ 
 % Receive 10000 samples
-samples = dev.receive(10000,0);
+fprintf('Time for loading: %g\n', toc); loadtime = toc;
 
+samples = dev.receive(recTime*fs,0);
+
+trec = toc - loadtime;
+fprintf('Time receiving %g\n', trec);
 % Obtain frequency axis (seen in Mathworks)
 % https://es.mathworks.com/help/matlab/math/basic-spectral-analysis.html)
+
 L = length(samples);
 f = (-L/2:(L-1)/2)*(fs/L)+f0;
 
-spectrum = abs(fft(samples));
+spectrum = 10*log10(abs(fft(samples)));
 plot(f, spectrum);
 xlim([f(1), f(end)]);
 %% Try to receive continuously

@@ -8,7 +8,7 @@ signal1 = textToSignal(file1);
 signal2 = textToSignal(file2);
 
 L = length(signal1);
-fs = 8e9;
+fs = 1e9;
 t = (0:L-1)/fs;
 f = (-L/2:(L-1)/2)*(fs/L);
 
