@@ -1,13 +1,9 @@
-function [dataStruc] = structureSignals(ch, bw, path, signals, fs, dataStruc)
+function [dataStruc] = structureSignalsIFRF(ch, fi, path, signals, fs, dataStruc)
 % Returns a structure array with all the signals with their bw, ch and data
 L = length(dataStruc);
 for ii = L+1:L+length(signals)
     dataStruc(ii).ch = ch;
-    dataStruc(ii).bw = bw;
-    
-    % The sr is the number before the .txt
-    sr = str2num(signals(ii-L).name(end-5:end-4));
-    dataStruc(ii).sr = sr;
+    dataStruc(ii).fi = fi;
     
     % The data is taken from the file
     file = [path, signals(ii-L).name];

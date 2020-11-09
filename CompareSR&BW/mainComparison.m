@@ -21,10 +21,10 @@ end
 
 figure('Color',[1 1 1]);
 
-x0=500;
-y0=500;
+x0=100;
+y0=100;
 width=1200;
-height=300;
+height=600;
 set(gcf,'position',[x0,y0,width,height])
 
 % Makes  asubplot for every channel (2)
@@ -55,8 +55,10 @@ end
 % Place legend
 for ii = 1:length(ch)
     subplot(1, length(ch), ii);
-    legend(Legend(ii).leg, 'location', 'northeast');
+    legend(Legend(ii).leg, 'location', 'southwest');
 end
 
+savePath = '../Informes/Informe1/Images/';
+saveas(gca, [savePath, 'compbwsr'],'epsc');
 
 
