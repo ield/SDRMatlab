@@ -1,7 +1,7 @@
 clear;
 path = 'SDR_Medidas/visualStudio/';
-signalFile1 = dir([path, 'ch2_1.txt']);
-signalFile2 = dir([path, 'cos100_3.txt']);
+signalFile1 = dir([path, 'ch1_100000.txt']);
+signalFile2 = dir([path, 'ch2_100000.txt']);
 file1 = [path, signalFile1.name];
 file2 = [path, signalFile2.name];
 signal1 = textToSignal(file1);
@@ -73,7 +73,7 @@ subplot(1, 4, 2)
 plot(f/1e6, X_f1, 'k');
 xlabel('Frequency (MHz)');
 ylabel('X_0(f)');
-xlim([101 103]);
+xlim([99 101]);
 
 subplot(1, 4, 3)
 plot(f/1e9, X_f2, 'k');
@@ -85,6 +85,6 @@ subplot(1, 4, 4)
 plot(f/1e6, X_f2, 'k');
 xlabel('Frequency (MHz)');
 ylabel('X_1(f)');
-xlim([100 102]);
+xlim([99 101]);
 
 % saveas(gca, [savePath, 'cosFreq_c'],'epsc');

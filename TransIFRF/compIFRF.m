@@ -2,10 +2,10 @@
 clear;
 path = 'SDR_Medidas/IFModulation/';
 %% Step 1. It is loaded all the data taken intro a structure
-fi = [1 5 20];
+fi = [1 5];
 ch = [1 2];
 bw = [10 20 60];
-fs = 8e9;
+fs = 1e9;
 
 dataStruc = [];
 for ii = 1:length(ch)
@@ -34,7 +34,7 @@ for ii = 1:length(ch)   %for every channel
         subplot(length(fi), length(ch), pos);
         xlabel('Frequency (MHz)');
         ylabel(['X_' num2str(ch(ii)-1) '(f)']);
-        xlim([70 130]);
+        xlim([95 105]);
 %         Legend(ii, jj).leg = cell(length(dataStruc)/length(ch), 1);
         hold on;
     end
