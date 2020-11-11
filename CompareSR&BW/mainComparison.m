@@ -60,5 +60,6 @@ end
 
 savePath = '../Informes/Informe1/Images/';
 saveas(gca, [savePath, 'compbwsr'],'epsc');
+saveas(gca, [savePath, 'compbwsr'],'svg');
 
 

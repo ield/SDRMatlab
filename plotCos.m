@@ -1,14 +1,14 @@
 clear;
-path = 'SDR_Medidas/visualStudio/';
-signalFile1 = dir([path, 'ch1_100000.txt']);
-signalFile2 = dir([path, 'ch2_100000.txt']);
+path = 'SDR_Medidas/CalculateZout/';
+signalFile1 = dir([path, '50ohm_1.txt']);
+signalFile2 = dir([path, '50ohm_4.txt']);
 file1 = [path, signalFile1.name];
 file2 = [path, signalFile2.name];
 signal1 = textToSignal(file1);
 signal2 = textToSignal(file2);
 
 L = length(signal1);
-fs = 1e9;
+fs = 8e9;
 t = (0:L-1)/fs;
 f = (-L/2:(L-1)/2)*(fs/L);
 
@@ -51,7 +51,8 @@ xlabel('Time (\mus)');
 ylabel('x_1(t)');
 xlim([2 2.1]);
 
-% saveas(gca, [savePath, 'cosTime_c'],'epsc');
+saveas(gca, [savePath, 'cosTime_c'],'epsc');
+saveas(gca, [savePath, 'cosTime_c'],'svg');
 
 %% Plot in f domain
 
@@ -87,4 +88,29 @@ xlabel('Frequency (MHz)');
 ylabel('X_1(f)');
 xlim([99 101]);
 
-% saveas(gca, [savePath, 'cosFreq_c'],'epsc');
+saveas(gca, [savePath, 'cosFreq_c'],'epsc');
+saveas(gca, [savePath, 'cosFreq_c'],'svg');
+
+%%
+figure('Color',[1 1 1]);
+
+x0=500;
+y0=500;
+width=1200;
+height=300;
+set(gcf,'position',[x0,y0,width,height])
+
+subplot(1, 2, 1)
+plot(t*1e6, signal1, 'k');
+xlabel('Time (\mus)');
+ylabel('x_0(t)');
+xlim([2 2.1]);
+
+
+subplot(1, 2, 2)
+plot(t*1e6, signal2, 'k');
+xlabel('Time (\mus)');
+ylabel('x_1(t)');
+xlim([2 2.1]);
+saveas(gca, [savePath, 'matching'],'epsc');
+saveas(gca, [savePath, 'matching'],'svg');

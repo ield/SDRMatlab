@@ -48,7 +48,7 @@ for ii = 1:length(dataStruc)
     
     subplot(length(fi), length(ch), (fi_now_index - 1)*length(ch) + ch_now_index);
     
-    plot(dataStruc(ii).fAxis/1e6, dataStruc(ii).dataFreq);
+    plot(dataStruc(ii).fAxis/1e6, dataStruc(ii).dataFreq, 'k');
     
     title(['Ch = ' num2str(ch_now) '; IF = ' num2str(fi_now) 'MHz']);
 end
@@ -56,5 +56,6 @@ end
 
 savePath = '../Informes/Informe1/Images/';
 saveas(gca, [savePath, 'compifrf'],'epsc');
+saveas(gca, [savePath, 'compifrf'],'svg');
 
 
