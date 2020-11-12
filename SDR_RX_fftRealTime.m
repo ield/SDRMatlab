@@ -9,14 +9,14 @@ tic;
 dev = limeSDR();                % Generates connection with LimeSDR
 
 % Initialize some parameters
-f0 = 78.0e6;
+f0 = 79.0e6;
 dev.rx0.frequency  = f0;
-fs = 5e6;
+fs = 4e6;
 dev.rx0.samplerate = fs;
-dev.rx0.bandwidth = 2e6;
+dev.rx0.bandwidth = 60e6;
 dev.rx0.antenna = 1;
 
-recTime = 5;    % Receiving time (s)
+recTime = 0.1;    % Receiving time (s)
 
 % Enable stream parameters
 dev.rx0.enable;
@@ -38,7 +38,8 @@ fprintf('Time receiving %g\n', trec);
 L = length(samples);
 f = (-L/2:(L-1)/2)*(fs/L)+f0;
 
-spectrum = 10*log10(abs(fft(samples)));
+spectrum = convertToF(samples');
+% spectrum = 10*log10(abs(fft(samples)));
 plot(f, spectrum);
 xlim([f(1), f(end)]);
 %% Try to receive continuously
